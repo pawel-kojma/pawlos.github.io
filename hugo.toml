@@ -1,0 +1,4 @@
+baseURL = 'https://pawel-kojma.github.io/pawlos.github.io/'
+languageCode = 'en-us'
+title = 'my cool website'
+theme = 'color-your-world'
