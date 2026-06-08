@@ -1,15 +1,61 @@
-baseURL = 'https://pawel-kojma.github.io/pawlos.github.io/'
-languageCode = 'en-us'
-title = 'ctf writeups'
-theme = 'color-your-world'
-
+baseURL = "https://pawel-kojma.github.io/pawlos.github.io/"
+languageCode = "en"
+title = "ctf writeups"
+theme = "color-your-world"
 
 enableEmoji = true
 enableInlineShortcodes = true
 
 [pagination]
-  pagerSize = 5
+  pagerSize = 3
 
+[server]
+  [[server.headers]]
+    for = '/**'
+    [server.headers.values]
+      Content-Security-Policy = 'script-src localhost:1313'
+      Referrer-Policy = 'strict-origin-when-cross-origin'
+      X-Content-Type-Options = 'nosniff'
+      X-Frame-Options = 'DENY'
+      X-XSS-Protection = '1; mode=block'
+
+# TEST
+# Netlify _headers
+[outputs]
+  home    = [ "HTML", "RSS", "HEADERS", "REDIRECTS" ]
+  section = [ "HTML", "RSS" ]
+
+[mediaTypes."text/netlify"]
+  suffixes  = [ "" ]
+  delimiter = ""
+
+[outputFormats.HEADERS]
+  mediaType       = "text/netlify"
+  baseName        = "_headers"
+  isPlainText     = true
+  notAlternative  = true
+
+# Necessary for i18n sites, so the correct 404 page can be rendered
+[outputFormats.REDIRECTS]
+  mediaType       = "text/netlify"
+  baseName        = "_redirects"
+  isPlainText     = true
+  notAlternative  = true
+
+
+[markup.highlight]
+  # To make use of the custom Chroma, this should be false
+  # The default is true
+  noClasses = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$ ', ' $']]
 
 [params]
   
@@ -151,3 +197,110 @@ enableInlineShortcodes = true
     title         = "Page not found"
     description   = "This page was not found."
     paragraph     = "Nothing to see here, buddy."
+    
+  [params.social.centralized]
+    facebook      = [ "<username>", "Zuckerburg" ]
+    flickr        = [ "<username>" ]
+    github        = [ "<username>" ]
+    gitlab        = [ "<username>" ]
+    instagram     = [ "<username>" ]
+    keybase       = [ "<username>" ]
+    linkedin      = [ "<username>" ]
+    medium        = [ "<username>" ]
+    reddit        = [ "<username>" ]
+    snapchat      = [ "<username>" ]
+    soundcloud    = [ "<username>" ]
+    stackOverflow = [ "<username>" ]
+    strava        = [ "<username>" ]
+    telegram      = [ "<username>" ]
+    twitch        = [ "<username>" ]
+    vimeo         = [ "<username>" ]
+    whatsapp      = [ "<number>" ]
+    x             = [ "<username>", "@birb" ]
+    xing          = [ "<username>" ]
+    youtube       = [ "<channelid>" ]
+    #entry         = [ "username", "label (optional)" ]
+    
+    # The "entry" here IS important. It's used to load the data.
+
+  [params.social.decentralized]
+
+    [params.social.decentralized.bsky]
+      1 = [ "https://bsky.app/profile/<username>.bsky.social", "bsky.social" ]
+      #entry = [ "full url", "label (required)" ]
+  
+    [params.social.decentralized.element]
+      1 = [ "https://app.element.io/#/user/<username>:matrix.org", "matrix.org" ]
+      
+    [params.social.decentralized.funkwhale]
+      1 = [ "https://open.audio/<username>", "open.audio" ]
+      
+    [params.social.decentralized.mastodon]
+      1 = [ "https://mastodon.social/<username>", "mastodon.social" ]
+      2 = [ "https://mastodon.too/<username>", "mastodon.too" ]
+      3 = [ "https://yet.another.one/<username>", "yet.another.one" ]
+      
+    [params.social.decentralized.matrix]
+      1 = [ "https://matrix.to/#/<username>:matrix.org", "matrix.org" ]
+      2 = [ "https://matrix.to/#/<username>:other.org", "other.org" ]
+      
+    [params.social.decentralized.peertube]
+      1 = [ "https://peertube.something/accounts/<username>", "peertube.something" ]
+      
+    [params.social.decentralized.pixelfed]
+      1 = [ "https://pixelfed.social/<username>", "pixelfed.social" ]
+      
+    # The "entry" here ISN'T important. It's used for nothing.
+    
+    
+[privacy]
+
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+
+  [privacy.twitter]
+    disabled = false
+    enableDNT = true
+    simple = true
+
+  [privacy.instagram]
+    disabled = false
+    simple = true
+
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
+
+[services]
+
+  [services.instagram]
+    disableInlineCSS = true
+
+  [services.twitter]
+    disableInlineCSS = true
+
+
+
+[languages]
+
+  [languages.en]
+  
+    languageName = "English"
+
+    [languages.en.menu]
+
+      [[languages.en.menu.main]]
+        name = "About"
+        weight = 1
+        url = "/"
+
+      [[languages.en.menu.main]]
+        name = "Posts"
+        weight = 2
+        url = "posts/"
+      
+      [[languages.en.menu.main]]
+        name = "Contact"
+        weight = 3
+        url = "contact/"
