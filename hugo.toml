@@ -197,6 +197,10 @@ enableInlineShortcodes = true
     title         = "Page not found"
     description   = "This page was not found."
     paragraph     = "Nothing to see here..."
+
+[params.social.centralized]
+    github        = [ "pawel-kojma" ]
+    linkedin      = [ "paweł-kojma-313077226" ]
     
 [languages]
 
